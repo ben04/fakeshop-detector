@@ -34,8 +34,7 @@
     {
       "resources": [
         "fakeshop_banner.html",
-        "fakeshop_banner.css",
-        "images/ic_shield.png"
+        "fakeshop_banner.css"
       ],
       "matches": [
         "*://*/*"

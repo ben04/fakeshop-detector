@@ -26,7 +26,8 @@ chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.clickAction === "openBSI") {
       chrome.tabs.create({
-        url: fakeUrl//bsiUrl
+        url: fakeUrl
+        //url: bsiUrl
       });
     } else if (request.clickAction === "closeShop") {
       chrome.tabs.goBack().catch((error) => {
@@ -52,10 +53,14 @@ function loadFakeshopList() {
 }
 
 function parseFakeshopData(data) {
+  console.log(data.slice(0, 10));
   allFakeshops.length = 0;
   saveFakeshopList(allFakeshops);
   for (const fakeshop of data) {
-    allFakeshops.push(fakeshop.site_baseURL);
+    allFakeshops.push({
+      "url": fakeshop[`site_baseURL`],
+      "since": fakeshop['site-added-date'].substring(0, 10)
+    });
   }
   console.log(allFakeshops);
   saveFakeshopList(allFakeshops);
