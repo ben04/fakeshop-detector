@@ -22,6 +22,11 @@
   color: #D90000;
 }
 
+#titleDiv > span > a {
+  color: #D90000;
+  text-decoration: underline !important;
+}
+
 #icon {
   color: #fff;
   padding: 4px;
