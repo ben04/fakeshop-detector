@@ -1,51 +1,75 @@
+@keyframes example {
+  from {
+    top: -200px;
+  }
+
+  to {
+    top: 0;
+  }
+}
+
 #outerDiv {
+  font-family: sans-serif;
   width: 100%;
   position: fixed;
   left: 0;
-  top: 0;
+  top: -200px;
   z-index: 1000;
   padding: 8px;
+  animation-name: example;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
 }
 
 #innerDiv {
   background: #FEE4E4;
-  border: 2px solid #FFD9D9;
+  border: 2px solid #D90000;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.04), 0px 0px 12px rgba(0, 0, 0, 0.04), 0px 0px 6px rgba(0, 0, 0, 0.03), 0px 0px 2px rgba(0, 0, 0, 0.02);
   border-radius: 4px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 #titleDiv {
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
   color: #D90000;
 }
 
-#titleDiv > span > a {
+#titleDiv>span>a {
   color: #D90000;
   text-decoration: underline !important;
 }
 
 #icon {
   color: #fff;
-  padding: 4px;
+  padding: 5px;
+  scale: 120%;
 }
 
 #iconBg {
   background: #D90000;
   clip-path: circle(50%);
-  height: 32px;
-  width: 32px;
+  height: 34px;
+  width: 34px;
   margin-right: 16px;
 }
 
 #title {
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 22px;
+  line-height: 27px;
   margin-bottom: 4px;
+  letter-spacing: 0.01em;
+}
+
+#subtitle {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
 }
 
 .horizontalFloating {
@@ -70,9 +94,9 @@
 
 button {
   height: 42px;
-  border-radius: 8px;
   font-style: normal;
   font-weight: 500;
+  border-radius: 4px;
   font-size: 18px;
   line-height: 22px;
   flex-direction: row;
@@ -80,23 +104,39 @@ button {
   align-items: center;
   padding: 10px 14px;
   gap: 4px;
+  cursor: pointer;
 }
 
 #btnBsi {
   background: #FFFFFF;
-  border: 1px solid #FFD9D9;
+  border: 1px solid #FFD1D1;
   margin-right: 16px;
   color: #D90000;
 }
 
+#btnBsi:hover {
+  background: #FFD1D1;
+  border: 1px solid #D90000;
+}
+
 #iconExternal {
   vertical-align: middle;
-  scale: 75%;
+  scale: 80%;
   color: #D90000;
+}
+
+#iconClose {
+  vertical-align: middle;
+  scale: 80%;
+  color: #fff;
 }
 
 #btnCloseShop {
   background: #D90000;
   border: 1px solid #D90000;
   color: #fff;
+}
+
+#btnCloseShop:hover {
+  background: #a00101;
 }

@@ -1,0 +1,31 @@
+.verticalFloating {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.horizontalFloating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.row {
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+hr {
+  width: 200px;
+}
+
+#outerDiv {
+  width: 200px;
+  height: auto;
+}
+
+#toggleLabel {
+  flex-grow: 1;
+}
