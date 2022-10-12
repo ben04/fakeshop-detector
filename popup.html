@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <link rel="stylesheet" href="button.css">
+    <link rel="stylesheet" href="popup.css">
   </head>
+
   <body>
-    <button id="changeColor">Check website!</button>
+    <div id="outerDiv" class="verticalFloating">
+      <div class="row horizontalFloating">
+        <span id="toggleLabel">Cyber-Sicherheit</span>
+        <label class="switch">
+          <input id="toggleCb" type="checkbox" checked>
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <span class="row" id="bsiWarnings">BSI Warnungen</span>
+      <hr>
+      <span class="row" id="about">About</span>
+    </div>
     <script src="popup.js"></script>
   </body>
+
 </html>

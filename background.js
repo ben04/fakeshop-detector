@@ -1,4 +1,4 @@
-const bsiUrl = "https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Informationen-und-Empfehlungen/Online-Banking-Online-Shopping-und-mobil-bezahlen/Online-Shopping/online-shopping_node.html";
+const bsiUrl = "https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Kampagne/Onlineshopping_SOS_Karte.pdf?__blob=publicationFile&v=5";
 const fakeUrl = "https://gutesbrennholz.com/";
 let allFakeshops = [];
 let currentTabId;
@@ -24,17 +24,23 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    if (request.clickAction === "openBSI") {
+    if (request.action === "openBSI") {
       chrome.tabs.create({
-        url: fakeUrl
-        //url: bsiUrl
+        //url: fakeUrl
+        url: bsiUrl
       });
-    } else if (request.clickAction === "closeShop") {
+    } else if (request.action === "closeShop") {
       chrome.tabs.goBack().catch((error) => {
         chrome.tabs.remove(currentTabId);
       });
-      console.log("close shop");
-    }
+    } else if (request.action === "updateFakeshopList") {
+      console.log("reload shops");
+      loadFakeshopList();
+    } else if (request.action === "showRiskIcon") {
+      chrome.action.setIcon({ path: "/images/ic_risk.png" });
+    } else if (request.action === "showNoRiskIcon") {
+      chrome.action.setIcon({ path: "/images/ic_no_risk.png" });
+    } 
   }
 );
 
@@ -53,7 +59,6 @@ function loadFakeshopList() {
 }
 
 function parseFakeshopData(data) {
-  console.log(data.slice(0, 10));
   allFakeshops.length = 0;
   saveFakeshopList(allFakeshops);
   for (const fakeshop of data) {
@@ -62,11 +67,18 @@ function parseFakeshopData(data) {
       "since": fakeshop['site-added-date'].substring(0, 10)
     });
   }
-  console.log(allFakeshops);
+  saveFakeshopListUpdateTime();
   saveFakeshopList(allFakeshops);
 }
 
 function saveFakeshopList(allFakeshops) {
   chrome.storage.local.set({ allFakeshops: allFakeshops });
+}
+
+function saveFakeshopListUpdateTime() {
+  const date = new Date();
+  console.log('save date: ' + date);
+  console.log('save date getTime(): ' + date.getTime());
+  chrome.storage.local.set({ updateTime: date.getTime() });
 }
 
